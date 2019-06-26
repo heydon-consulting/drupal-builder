@@ -13,6 +13,6 @@ RUN composer -n global require -n "hirak/prestissimo"
 RUN wget -O /usr/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
 RUN chmod +x /usr/bin/drush
 
-RUN npm install -g gulp-cli
+RUN npm install -g gulp-cli bower yarn
 
 CMD ["php", "-a"]
