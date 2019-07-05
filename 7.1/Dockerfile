@@ -9,9 +9,14 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 RUN composer -n global require -n "hirak/prestissimo"
+RUN composer -n global require -n "drupal/coder"
 
 RUN wget -O /usr/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
 RUN chmod +x /usr/bin/drush
+
+RUN wget -O /usr/bin/phpcs https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+RUN chmod +x /usr/bin/phpcs
+RUN phpcs --config-set installed_paths /root/.composer/vendor/drupal/coder/coder_sniffer
 
 RUN npm install -g gulp-cli bower yarn
 
