@@ -3,7 +3,7 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM php-cli:7.1
+FROM php:7.1-cli
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get update && apt-get install git libpng-dev nodejs openssh-client rsync zip unzip wget -y

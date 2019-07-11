@@ -1,4 +1,4 @@
-FROM php-cli:%%PHP_VERSION%%
+FROM php:%%PHP_VERSION%%-cli
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get update && apt-get install git libpng-dev nodejs openssh-client rsync zip unzip wget -y
