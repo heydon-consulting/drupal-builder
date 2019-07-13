@@ -23,6 +23,6 @@ RUN wget -O /usr/bin/phpcs https://squizlabs.github.io/PHP_CodeSniffer/phpcs.pha
 RUN chmod +x /usr/bin/phpcs
 RUN phpcs --config-set installed_paths /root/.composer/vendor/drupal/coder/coder_sniffer
 
-RUN npm install -g gulp-cli bower yarn
+RUN npm install -g gulp-cli yarn
 
 CMD ["php", "-a"]
