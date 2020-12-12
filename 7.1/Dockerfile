@@ -11,13 +11,11 @@ RUN ln -s `which npm` /usr/local/bin/npm
 RUN docker-php-ext-install gd
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php --install-dir=/usr/bin --filename=composer --version=^1
-RUN php composer-setup.php --install-dir=/usr/bin --filename=composer2 --version=^2
+RUN php composer-setup.php --install-dir=/usr/bin --filename=composer --version=1.10.19
 RUN php -r "unlink('composer-setup.php');"
 
 RUN composer -n global require -n "hirak/prestissimo"
 RUN composer -n global require -n "drupal/coder"
-RUN COMPOSER_HOME=~/.composer2 composer2 -n global require -n "drupal/coder"
 
 RUN wget -O /usr/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
 RUN chmod +x /usr/bin/drush
