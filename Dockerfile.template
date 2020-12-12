@@ -6,8 +6,8 @@ RUN ln -s `which npm` /usr/local/bin/npm
 RUN docker-php-ext-install gd
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php --install-dir=/usr/bin --filename=composer --version=^1
-RUN php composer-setup.php --install-dir=/usr/bin --filename=composer2 --version=^2
+RUN php composer-setup.php --install-dir=/usr/bin --filename=composer --version=1
+RUN php composer-setup.php --install-dir=/usr/bin --filename=composer2 --version=2
 RUN php -r "unlink('composer-setup.php');"
 
 RUN composer -n global require -n "hirak/prestissimo"
