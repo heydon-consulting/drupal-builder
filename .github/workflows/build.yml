@@ -30,7 +30,6 @@ jobs:
 
       - name: Generate Dockerfile
         run: ~/.local/bin/jinja -D php_version "${{ matrix.php_version }}" -D composer_version "${{ matrix.composer_version }}" Dockerfile.j2 > "${{ matrix.php_version }}/Dockerfile"
-      - run: cat "${{ matrix.php_version }}/Dockerfile"
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -45,4 +44,4 @@ jobs:
           file: ./${{ matrix.php_version }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: heydon/drupal-builder:${{ matrix.composer_version }}-${{ matrix.php_version }}
+          tags: heydon/drupal-builder:${{ matrix.php_version }}-${{ matrix.composer_version }}
