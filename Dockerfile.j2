@@ -9,7 +9,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/bin --filename=composer --version={{ composer_version }}
 RUN php -r "unlink('composer-setup.php');"
 
-{% if php_version == 1 %}
+{% if php_version == "1" %}
 RUN composer -n global require -n "hirak/prestissimo"
 {% endif %}
 RUN composer -n global require -n "drupal/coder"
