@@ -46,4 +46,4 @@ jobs:
           file: ./${{ matrix.php_version }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: heydon/drupal-builder:${{ matrix.composer_version }}-{{.matrix.php_version }}
+          tags: heydon/drupal-builder:${{ matrix.composer_version }}-${{ matrix.php_version }}
