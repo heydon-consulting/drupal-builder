@@ -24,12 +24,13 @@ jobs:
       - uses: docker/setup-buildx-action@v1
       - run: sudo apt-get install python3-setuptools
       - run: pip3 install jinja-cli 
+      - run: ls ~/.local/bin
 
       - name: Create PHP context directory
         run: (test ! -d "${{ matrix.php_version}}" && (echo "Creating ${{ matrix.php_version}} directory "; mkdir "${{ matrix.php_version}}") ) || echo "Directory ${{ matrix.php_version}} doesn't exists"
 
       - name: Generate Dockerfile
-        run: jinja2 -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" Dockerfile.j2 > "${{ matrix.php_version }}/Dockerfile"
+        run: ~/.local/bin/jinja2 -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" Dockerfile.j2 > "${{ matrix.php_version }}/Dockerfile"
       - run: cat "${{ matrix.php_version }}/Dockerfile"
 
       - name: Login to DockerHub
