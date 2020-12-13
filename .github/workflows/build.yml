@@ -26,7 +26,7 @@ jobs:
       - run: pip3 install jinja-cli 
 
       - name: Create PHP context directory
-        run: (test ! -d "${{ matrix.php_version}}" && (echo "Creating ${{ matrix.php_version}} directory " mkdir "${{ matrix.php_version}}") ) || echo "Directory ${{ matrix.php_version}} doesn't exists"
+        run: (test ! -d "${{ matrix.php_version}}" && (echo "Creating ${{ matrix.php_version}} directory "; mkdir "${{ matrix.php_version}}") ) || echo "Directory ${{ matrix.php_version}} doesn't exists"
 
       - name: Generate Dockerfile
         run: jinja -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" Dockerfile.j2 > "${{ matrix.php_version }}/Dockerfile"
