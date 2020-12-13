@@ -1,6 +1,6 @@
 FROM php:{{ php_version }}-cli
 
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update && apt-get install git libpng-dev nodejs openssh-client rsync zip unzip wget -y
 RUN ln -s `which npm` /usr/local/bin/npm
 RUN docker-php-ext-install gd
