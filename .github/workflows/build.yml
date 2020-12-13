@@ -1,5 +1,5 @@
 ---
-name: Build Episodes
+name: Build Docker image
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
       - run: pip3 install jinja-cli 
 
       - name: Create PHP context directory
-        if: matrix.php_version = 1
+        if: matrix.php_version == 1
         run: mkdir "${{ matrix.php_version}}"
 
       - run: ninja -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" > "${{ matrix.php_version }}/Dockerfile"
