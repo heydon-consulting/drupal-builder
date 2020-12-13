@@ -1,0 +1,47 @@
+---
+name: Build Episodes
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docker-image-builds:
+    name: Docker image builds
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - php_version: 7.3
+            composer_version: 1
+          - php_version: 7.3
+            composer_version: 2
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker/setup-qemu-action@v1
+      - uses: docker/setup-buildx-action@v1
+      - run: pip3 install jinja-cli 
+
+      - run: |
+        if [! -d ${{ matrix.php_version }}]; then
+          mkdir "${{ matrix.php_version}}"
+        fi
+      - run: ninja -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}"
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Create 
+      - name: Build and push image.
+        uses: docker/build-push-action@v2
+        with:
+          context: ./${{ matrix.php_version }}/
+          file: ./${{ matrix.php_version }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: geerlingguy/${{ matrix.repo }}:${{ matrix.composer_version }}:{{.matrix.php_version }}
