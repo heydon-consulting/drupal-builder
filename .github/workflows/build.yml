@@ -26,10 +26,10 @@ jobs:
       - run: pip3 install jinja-cli 
 
       - name: Create PHP context directory
-        if: matrix.php_version == 1
-        run: mkdir "${{ matrix.php_version}}"
+        run: (test ! -d "${{ matrix.php_version}}" && mkdir "${{ matrix.php_version}}")
 
-      - run: ninja -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" > "${{ matrix.php_version }}/Dockerfile"
+      - name: Generate Dockerfile
+        run: ninja -D php_version="${{ matrix.php_version }}" -D composer_version="${{ matrix.composer_version }}" > "${{ matrix.php_version }}/Dockerfile"
       - run: cat "${{ matrix.php_version }}/Dockerfile"
 
       - name: Login to DockerHub
