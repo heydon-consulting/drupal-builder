@@ -24,7 +24,6 @@ jobs:
       - uses: docker/setup-buildx-action@v1
       - run: sudo apt-get install python3-setuptools
       - run: pip3 install jinja-cli 
-      - run: ls ~/.local/bin
 
       - name: Create PHP context directory
         run: (test ! -d "${{ matrix.php_version}}" && (echo "Creating ${{ matrix.php_version}} directory "; mkdir "${{ matrix.php_version}}") ) || echo "Directory ${{ matrix.php_version}} doesn't exists"
