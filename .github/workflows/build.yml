@@ -17,6 +17,14 @@ jobs:
             composer_version: 1
           - php_version: 7.3
             composer_version: 2
+          - php_version: 7.4
+            composer_version: 1
+          - php_version: 7.4
+            composer_version: 2
+          - php_version: 8.0
+            composer_version: 2
+          - php_version: 8.1
+            composer_version: 2
 
     steps:
       - uses: actions/checkout@v2
